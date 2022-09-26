@@ -4,6 +4,8 @@ import { CityWeather } from '../../shared/models/weather';
 import getImageAndStyleFromWeather, {
   getHourlyFormat,
 } from '../../shared/modules/utilities';
+//@ts-ignore TODO: fix this
+import { REACT_APP_OPEN_WEATHER_API_KEY } from '@env';
 
 const getWeather =
   (city: {
@@ -15,6 +17,9 @@ const getWeather =
   async (dispatch: AppDispatch) => {
     dispatch(setCallState({ isLoading: true, error: null }));
     try {
+      console.log(
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${city.coord.lat}&lon=${city.coord.lon}&exclude=minutely,&units=metric&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`
+      );
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/onecall?lat=${city.coord.lat}&lon=${city.coord.lon}&exclude=minutely,&units=metric&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`
       );

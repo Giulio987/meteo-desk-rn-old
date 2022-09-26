@@ -4,97 +4,123 @@ import { Image, StyleSheet, View } from 'react-native';
 import Home from './screens/Home';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import { useFonts } from 'expo-font';
+import { useCallback, useEffect } from 'react';
+import * as SplashScreen from 'expo-splash-screen';
 
 const Tab = createBottomTabNavigator();
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    //import from google fonts
+    'Poppins-Light': require('./assets/fonts/Poppins/Poppins-Light.ttf'),
+    'Poppins-Medium': require('./assets/fonts/Poppins/Poppins-Medium.ttf'),
+    'Poppins-SemiBold': require('./assets/fonts/Poppins/Poppins-SemiBold.ttf'),
+  });
+  useEffect(() => {
+    async function prepare() {
+      await SplashScreen.preventAutoHideAsync();
+    }
+    prepare();
+  }, []);
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <Tab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarStyle: {
-              position: 'absolute',
-              bottom: 20,
-              left: 20,
-              right: 20,
-              borderRadius: 25,
-              paddingBottom: 0,
-            },
-            headerShown: false,
-            tabBarShowLabel: false,
-          })}
-        >
-          <Tab.Screen
-            name="Home"
-            component={Home}
-            options={{
-              tabBarIcon: ({ focused }) => {
-                return (
-                  <View
-                    style={{
-                      justifyContent: 'space-between',
-                      flex: 1,
-                    }}
-                  >
+    <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
+      <Provider store={store}>
+        <NavigationContainer>
+          <Tab.Navigator
+            screenOptions={({ route }) => ({
+              tabBarStyle: {
+                position: 'absolute',
+                bottom: 20,
+                left: 20,
+                right: 20,
+                borderRadius: 25,
+                paddingBottom: 0,
+              },
+              headerShown: false,
+              tabBarShowLabel: false,
+            })}
+          >
+            <Tab.Screen
+              name="Home"
+              component={Home}
+              options={{
+                tabBarIcon: ({ focused }) => {
+                  return (
                     <View
                       style={{
-                        flexDirection: 'row',
+                        justifyContent: 'space-between',
                         flex: 1,
-                        justifyContent: 'center',
                       }}
                     >
-                      <Image
-                        source={require('./assets/home.png')}
-                        style={{ alignSelf: 'center' }}
-                      />
-                    </View>
-                    {focused && (
                       <View
                         style={{
-                          borderBottomWidth: 2,
-                          borderBottomColor: '#01175F', //TODO: metterlo in costanti
-                          width: 71,
+                          flexDirection: 'row',
+                          flex: 1,
+                          justifyContent: 'center',
                         }}
-                      />
-                    )}
-                  </View>
-                );
-              },
-            }}
-          />
-          <Tab.Screen
-            name="Search"
-            component={Home}
-            options={{
-              tabBarIcon: ({}) => {
-                return <Image source={require('./assets/search.png')} />;
-              },
-            }}
-            listeners={{
-              tabPress: (e) => {
-                // Prevent default action and disable tab press
-                e.preventDefault();
-              },
-            }}
-          />
-          <Tab.Screen
-            name="Location"
-            component={Home}
-            options={{
-              tabBarIcon: ({}) => {
-                return <Image source={require('./assets/location.png')} />;
-              },
-            }}
-            listeners={{
-              tabPress: (e) => {
-                // Prevent default action and disable tab press
-                e.preventDefault();
-              },
-            }}
-          />
-        </Tab.Navigator>
-      </NavigationContainer>
-    </Provider>
+                      >
+                        <Image
+                          source={require('./assets/home.png')}
+                          style={{ alignSelf: 'center' }}
+                        />
+                      </View>
+                      {focused && (
+                        <View
+                          style={{
+                            borderBottomWidth: 2,
+                            borderBottomColor: '#01175F', //TODO: metterlo in costanti
+                            width: 71,
+                          }}
+                        />
+                      )}
+                    </View>
+                  );
+                },
+              }}
+            />
+            <Tab.Screen
+              name="Search"
+              component={Home}
+              options={{
+                tabBarIcon: ({}) => {
+                  return <Image source={require('./assets/search.png')} />;
+                },
+              }}
+              listeners={{
+                tabPress: (e) => {
+                  // Prevent default action and disable tab press
+                  e.preventDefault();
+                },
+              }}
+            />
+            <Tab.Screen
+              name="Location"
+              component={Home}
+              options={{
+                tabBarIcon: ({}) => {
+                  return <Image source={require('./assets/location.png')} />;
+                },
+              }}
+              listeners={{
+                tabPress: (e) => {
+                  // Prevent default action and disable tab press
+                  e.preventDefault();
+                },
+              }}
+            />
+          </Tab.Navigator>
+        </NavigationContainer>
+      </Provider>
+    </View>
   );
 }
 

@@ -1,5 +1,11 @@
-import React, { useEffect, useMemo } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useCallback, useEffect, useMemo } from 'react';
+import {
+  RefreshControl,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAppDispatch } from '../redux/store';
 import { getWeather } from '../redux/thunks/weather';
@@ -25,28 +31,49 @@ const CITIES = [
   },
 ];
 
-const Home = (props: Props) => {
+const Home = ({}: Props) => {
   const dispatch = useAppDispatch();
+  const dispatchMyAPi = useCallback(async () => {
+    for (const city of CITIES) {
+      await dispatch(getWeather(city));
+    }
+  }, [dispatch]);
+  const [refreshing, setRefreshing] = React.useState(false);
 
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    dispatchMyAPi().then(() => setRefreshing(false));
+  }, []);
   useEffect(() => {
-    const dispatchMyAPi = async () => {
-      for (const city of CITIES) {
-        await dispatch(getWeather(city));
-      }
-    };
     dispatchMyAPi()
       .then(() => console.log('done'))
       .catch((e) => console.log('Errore: ' + e));
   }, []);
 
   return (
-    <SafeAreaView>
-      <Text>Good morning!</Text>
-      <Text>Giulio</Text>
+    <SafeAreaView style={styles.container}>
+      <ScrollView
+        contentContainerStyle={styles.contentContainer}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
+        <View style={{ paddingTop: 50, alignItems: 'center' }}>
+          <Text>Good morning!</Text>
+          <Text>Giulio</Text>
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
 
 export default Home;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  contentContainer: {
+    flex: 1,
+  },
+});

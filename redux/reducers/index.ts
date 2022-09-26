@@ -8,6 +8,4 @@ const rootReducer = combineReducers({
 
 export type RootState = ReturnType<typeof rootReducer>;
 
-export default combineReducers({
-  weather: weatherReducer,
-});
+export default rootReducer;

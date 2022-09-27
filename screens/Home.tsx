@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useMemo } from 'react';
 import {
+  Image,
+  Pressable,
   RefreshControl,
   ScrollView,
   StyleSheet,
@@ -58,9 +60,21 @@ const Home = ({}: Props) => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        <View style={{ paddingTop: 50, alignItems: 'center' }}>
-          <Text>Good morning!</Text>
-          <Text>Giulio</Text>
+        <View style={{ marginTop: 50, alignItems: 'center' }}>
+          <View style={{ alignItems: 'center' }}>
+            {/* TODO style */}
+            <Text>Good morning!</Text>
+            <Text>Giulio</Text>
+          </View>
+          <View>
+            <Pressable
+              style={({ pressed }) => ({ flexDirection: 'row' })}
+              onPress={() => {}}
+            >
+              <Image source={require('../assets/Plus.png')}></Image>
+              <Text>Add city</Text>
+            </Pressable>
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>

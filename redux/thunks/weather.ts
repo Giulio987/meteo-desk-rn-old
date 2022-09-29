@@ -17,9 +17,6 @@ const getWeather =
   async (dispatch: AppDispatch) => {
     dispatch(setCallState({ isLoading: true, error: null }));
     try {
-      console.log(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${city.coord.lat}&lon=${city.coord.lon}&exclude=minutely,&units=metric&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`
-      );
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/onecall?lat=${city.coord.lat}&lon=${city.coord.lon}&exclude=minutely,&units=metric&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`
       );
@@ -27,7 +24,6 @@ const getWeather =
         throw new Error('Request failed');
       }
       const data = await response.json();
-      console.log(data);
       const additionalData = getImageAndStyleFromWeather(
         data.current.weather[0].main,
         city.id
@@ -81,7 +77,6 @@ const getWeather =
             .image,
         })),
       };
-      console.log(cityWeather);
       dispatch(setWeather(cityWeather));
       dispatch(setCallState({ isLoading: false, error: null }));
     } catch (err: any) {

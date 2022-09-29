@@ -11,6 +11,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAppDispatch } from '../redux/store';
 import { getWeather } from '../redux/thunks/weather';
+import CitiesList from '../shared/components/CitiesList';
 
 type Props = {};
 
@@ -76,6 +77,7 @@ const Home = ({}: Props) => {
             </Pressable>
           </View>
         </View>
+        <CitiesList />
       </ScrollView>
     </SafeAreaView>
   );

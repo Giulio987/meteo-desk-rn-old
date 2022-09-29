@@ -15,6 +15,7 @@ export default function App() {
     'Poppins-Light': require('./assets/fonts/Poppins/Poppins-Light.ttf'),
     'Poppins-Medium': require('./assets/fonts/Poppins/Poppins-Medium.ttf'),
     'Poppins-SemiBold': require('./assets/fonts/Poppins/Poppins-SemiBold.ttf'),
+    'Poppins-Bold': require('./assets/fonts/Poppins/Poppins-Bold.ttf'),
   });
   useEffect(() => {
     async function prepare() {

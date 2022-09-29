@@ -60,6 +60,7 @@ const Home = ({}: Props) => {
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
+        nestedScrollEnabled={true}
       >
         <View style={{ marginTop: 50, alignItems: 'center' }}>
           <View style={{ alignItems: 'center' }}>

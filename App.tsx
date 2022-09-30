@@ -7,8 +7,11 @@ import store from './redux/store';
 import { useFonts } from 'expo-font';
 import { useCallback, useEffect } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
+import Colors from './shared/styles/Colors';
 
 const Tab = createBottomTabNavigator();
+SplashScreen.preventAutoHideAsync();
+
 export default function App() {
   const [fontsLoaded] = useFonts({
     //import from google fonts
@@ -77,7 +80,7 @@ export default function App() {
                         <View
                           style={{
                             borderBottomWidth: 2,
-                            borderBottomColor: '#01175F', //TODO: metterlo in costanti
+                            borderBottomColor: Colors.primary.main,
                             width: 71,
                           }}
                         />

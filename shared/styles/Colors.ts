@@ -1,11 +1,11 @@
 const Colors = {
   //TODO verificare colori
   primary: {
-    main: '#5374E7',
-    light: '#77B9F5',
+    main: '#01175F',
   },
   secondary: {
-    main: '#01175F',
+    main: '#5374E7',
+    light: '#77B9F5',
   },
   rainy: {
     main: '#011354',

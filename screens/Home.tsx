@@ -11,6 +11,8 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAppDispatch } from '../redux/store';
 import { getWeather } from '../redux/thunks/weather';
+import AddCityBtn from '../shared/components/AddCityBtn';
+import Colors from '../shared/styles/Colors';
 
 type Props = {};
 
@@ -60,22 +62,8 @@ const Home = ({}: Props) => {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-        <View style={{ marginTop: 50, alignItems: 'center' }}>
-          <View style={{ alignItems: 'center' }}>
-            {/* TODO style */}
-            <Text>Good morning!</Text>
-            <Text>Giulio</Text>
-          </View>
-          <View>
-            <Pressable
-              style={({ pressed }) => ({ flexDirection: 'row' })}
-              onPress={() => {}}
-            >
-              <Image source={require('../assets/Plus.png')}></Image>
-              <Text>Add city</Text>
-            </Pressable>
-          </View>
-        </View>
+        <Text style={styles.title}>Good morning!{'\n'}Giulio</Text>
+        <AddCityBtn />
       </ScrollView>
     </SafeAreaView>
   );
@@ -89,5 +77,13 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
+    marginTop: 50,
+    alignItems: 'center',
+  },
+  title: {
+    fontFamily: 'Poppins-SemiBold',
+    color: Colors.primary.main,
+    fontSize: 28,
+    textAlign: 'center',
   },
 });

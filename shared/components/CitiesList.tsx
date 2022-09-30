@@ -10,6 +10,7 @@ const CitiesList = () => {
   );
   return (
     <FlatList
+      style={{ width: '100%' }}
       contentContainerStyle={{ marginHorizontal: 20 }}
       data={cities}
       renderItem={({ item }) => <CitiyCard city={item} />}

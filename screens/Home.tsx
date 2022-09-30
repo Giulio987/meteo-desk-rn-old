@@ -1,13 +1,5 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
-import {
-  Image,
-  Pressable,
-  RefreshControl,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import React, { useCallback, useEffect } from 'react';
+import { RefreshControl, ScrollView, StyleSheet, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useAppDispatch } from '../redux/store';
 import { getWeather } from '../redux/thunks/weather';
@@ -15,7 +7,7 @@ import AddCityBtn from '../shared/components/AddCityBtn';
 import Colors from '../shared/styles/Colors';
 import CitiesList from '../shared/components/CitiesList';
 
-type Props = {};
+type HomeProps = {};
 
 const CITIES = [
   {
@@ -36,7 +28,7 @@ const CITIES = [
   },
 ];
 
-const Home = ({}: Props) => {
+const Home = () => {
   const dispatch = useAppDispatch();
   const dispatchMyAPi = useCallback(async () => {
     for (const city of CITIES) {

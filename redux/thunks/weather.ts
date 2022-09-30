@@ -18,7 +18,7 @@ const getWeather =
     dispatch(setCallState({ isLoading: true, error: null }));
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${city.coord.lat}&lon=${city.coord.lon}&exclude=minutely,&units=metric&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${city.coord.lat}&lon=${city.coord.lon}&exclude=minutely,&units=metric&appid=${REACT_APP_OPEN_WEATHER_API_KEY}`
       );
       if (!response.ok) {
         throw new Error('Request failed');

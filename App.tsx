@@ -1,5 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Image, StyleSheet, View } from 'react-native';
 import Home from './screens/Home';
 import { Provider } from 'react-redux';
@@ -8,9 +9,33 @@ import { useFonts } from 'expo-font';
 import { useCallback, useEffect } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
 import Colors from './shared/styles/Colors';
+import CityInfo from './screens/CityInfo';
 
 const Tab = createBottomTabNavigator();
+const HomeStack = createNativeStackNavigator();
+
 SplashScreen.preventAutoHideAsync();
+
+function HomeStackNavigator() {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen
+        name="Home"
+        component={Home}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <HomeStack.Screen
+        name="CityInfo"
+        component={CityInfo}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </HomeStack.Navigator>
+  );
+}
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -54,8 +79,8 @@ export default function App() {
             })}
           >
             <Tab.Screen
-              name="Home"
-              component={Home}
+              name="HomeNav"
+              component={HomeStackNavigator}
               options={{
                 tabBarIcon: ({ focused }) => {
                   return (

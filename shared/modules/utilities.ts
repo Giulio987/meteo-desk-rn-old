@@ -11,54 +11,32 @@ const getImageAndStyleFromWeather = (weather: string, id: number) => {
       return {
         image: cloudy,
         style: {
-          background:
-            (id === 1
-              ? 'linear-gradient(to bottom,'
-              : 'linear-gradient(to right,') +
-            Colors.cloudy.main +
-            ', ' +
-            Colors.cloudy.light +
-            ')',
+          first: Colors.cloudy.main,
+          second: Colors.cloudy.light,
         },
       };
     case 'Rain':
       return {
         image: rainy,
         style: {
-          background:
-            (id === 1
-              ? 'linear-gradient(to bottom,'
-              : 'linear-gradient(to right,') +
-            Colors.rainy.main +
-            ', ' +
-            Colors.rainy.light +
-            ')',
+          first: Colors.rainy.main,
+          second: Colors.rainy.light,
         },
       };
     case 'Clear':
       return {
         image: sunny,
         style: {
-          background:
-            (id === 1
-              ? 'linear-gradient(to bottom,'
-              : 'linear-gradient(to right,') +
-            Colors.primary.main +
-            ', ' +
-            Colors.primary.light +
-            ')',
+          first: Colors.primary.main,
+          second: Colors.primary.light,
         },
       };
     default:
       return {
         image: sunny,
         style: {
-          background:
-            'linear-gradient(to bottom,' +
-            Colors.primary.main +
-            ', ' +
-            Colors.primary.light +
-            ')',
+          first: Colors.primary.main,
+          second: Colors.primary.light,
         },
       };
   }
@@ -95,6 +73,10 @@ export const getArrayOfTabs = (cityWeather: CityWeather) => {
     }
     return arrayOfTabs;
   } else return [];
+};
+
+export const getFormattedDate = (dt: string) => {
+  return [`${dt.split(' ')[0]} ${dt.split(' ')[1]},`, dt.split(' ')[2]];
 };
 
 export default getImageAndStyleFromWeather;

@@ -13,6 +13,7 @@ import { useAppDispatch } from '../redux/store';
 import { getWeather } from '../redux/thunks/weather';
 import AddCityBtn from '../shared/components/AddCityBtn';
 import Colors from '../shared/styles/Colors';
+import CitiesList from '../shared/components/CitiesList';
 
 type Props = {};
 
@@ -61,9 +62,11 @@ const Home = ({}: Props) => {
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
+        nestedScrollEnabled={true}
       >
         <Text style={styles.title}>Good morning!{'\n'}Giulio</Text>
         <AddCityBtn />
+        <CitiesList />
       </ScrollView>
     </SafeAreaView>
   );

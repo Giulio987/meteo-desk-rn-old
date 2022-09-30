@@ -3,7 +3,7 @@ import React from 'react';
 
 const AddCityBtn = () => {
   return (
-    <Pressable
+    <Pressable //TODO prendere lo stile da github eliminato con il merge nel componente padre
       style={({ pressed }) => [style.button, pressed && style.pressed]}
       onPress={() => {}}
     >

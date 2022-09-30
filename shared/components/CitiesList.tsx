@@ -15,6 +15,7 @@ const CitiesList = () => {
       data={cities}
       renderItem={({ item }) => <CitiyCard city={item} />}
       keyExtractor={(item) => item.id.toString()}
+      nestedScrollEnabled={true}
     />
   );
 };

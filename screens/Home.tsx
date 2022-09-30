@@ -37,7 +37,7 @@ const Home = () => {
   }, [dispatch]);
   const [refreshing, setRefreshing] = React.useState(false);
 
-  const onRefresh = useCallback(() => {
+  /*   const onRefresh = useCallback(() => {
     setRefreshing(true);
     dispatchMyAPi().then(() => setRefreshing(false));
   }, []);
@@ -45,21 +45,21 @@ const Home = () => {
     dispatchMyAPi()
       .then(() => console.log('done'))
       .catch((e) => console.log('Errore: ' + e));
-  }, []);
+  }, []); */
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView
+      {/*       <ScrollView -> TODO capire come integrarlo con flatlist in modo che scorrendo verso il basso si scorrano le città e verso l'alto si refreshi la lista
         contentContainerStyle={styles.contentContainer}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
         nestedScrollEnabled={true}
-      >
-        <Text style={styles.title}>Good morning!{'\n'}Giulio</Text>
-        <AddCityBtn />
-        <CitiesList />
-      </ScrollView>
+      > */}
+      <Text style={styles.title}>Good morning!{'\n'}Giulio</Text>
+      <AddCityBtn />
+      <CitiesList />
+      {/*       </ScrollView> */}
     </SafeAreaView>
   );
 };

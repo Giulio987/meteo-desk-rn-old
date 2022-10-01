@@ -27,16 +27,17 @@ const getImageAndStyleFromWeather = (weather: string, id: number) => {
       return {
         image: sunny,
         style: {
-          first: Colors.primary.main,
-          second: Colors.primary.light,
+          first: Colors.sunny.main,
+          second: Colors.sunny.light,
         },
       };
+    //TODO capire se mettere anche il pioggia/Sole come su invision
     default:
       return {
         image: sunny,
         style: {
-          first: Colors.primary.main,
-          second: Colors.primary.light,
+          first: Colors.sunny.main,
+          second: Colors.sunny.light,
         },
       };
   }

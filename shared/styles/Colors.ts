@@ -3,7 +3,7 @@ const Colors = {
   primary: {
     main: '#01175F',
   },
-  secondary: {
+  sunny: {
     main: '#5374E7',
     light: '#77B9F5',
   },

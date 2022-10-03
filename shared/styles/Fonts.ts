@@ -12,6 +12,14 @@ const FontSizes = {
     xl: 26,
     xxl: 28,
   },
+  info: {
+    title: 32,
+    medium: 20,
+    temperature: 110,
+    hour: 12,
+    day: 22,
+    temperatureSmall: 36,
+  },
 };
 
 export { Fonts, FontSizes };

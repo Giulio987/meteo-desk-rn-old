@@ -11,6 +11,8 @@ import BackBtn from '../shared/components/BackBtn';
 import { useRoute } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import TemperatureRow from '../shared/components/TemperatureRow';
+import { Fonts, FontSizes } from '../shared/styles/Fonts';
+import NextDaysList from '../shared/components/NextDaysList';
 
 const CityInfo = () => {
   const route = useRoute<any>(); //TODO: fix any
@@ -27,22 +29,33 @@ const CityInfo = () => {
       <SafeAreaView style={styles.container}>
         <View style={styles.header}>
           <BackBtn />
-          <Text>{route.params.city.name}</Text>
-          <Pressable style={({ pressed }) => [pressed && { opacity: 0.5 }]}>
+          <Text style={styles.cityName}>{route.params.city.name}</Text>
+          <Pressable style={({ pressed }) => [pressed && styles.pressed]}>
             <Image source={require('../assets/plus-white.png')}></Image>
           </Pressable>
         </View>
-        <Text>Data</Text>
-        <Text>Meteo scritto</Text>
-        <View>
+        <Text style={styles.date}>
+          {route.params.city.mainWeather.localeDate}
+        </Text>
+        <Text style={styles.meteo}>{route.params.city.mainWeather.main}</Text>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
           <Image source={require('../assets/Cloudy.png')} />
-          <Text>Temperatura</Text>
+          <Text style={styles.temperature}>
+            {route.params.city.hourlyTemperatures[0].temperature.toFixed() +
+              '°'}
+          </Text>
         </View>
         {/*@ts-ignore TODO*/}
         <TemperatureRow
           hourlyTemperatures={route.params.city.hourlyTemperatures}
         />
-        <Text>MeteoCardDays</Text>
+        <NextDaysList dailyWeather={route.params.city.dailyWeather} />
       </SafeAreaView>
     </LinearGradient>
   );
@@ -57,6 +70,36 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 20,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  pressed: { opacity: 0.5 },
+  cityName: {
+    fontSize: FontSizes.info.title,
+    color: 'white',
+    fontFamily: Fonts.semiBold,
+    lineHeight: 48,
+  },
+  date: {
+    fontSize: FontSizes.info.medium,
+    color: 'white',
+    fontFamily: Fonts.medium,
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  meteo: {
+    fontSize: FontSizes.info.medium,
+    color: 'white',
+    fontFamily: Fonts.light,
+    lineHeight: 30,
+    textAlign: 'center',
+  },
+  temperature: {
+    fontSize: FontSizes.info.temperature,
+    color: 'white',
+    fontFamily: Fonts.bold,
+    lineHeight: 166,
+    marginLeft: 40,
   },
 });

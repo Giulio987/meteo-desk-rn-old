@@ -1,9 +1,14 @@
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 const BackBtn = () => {
+  const navigation = useNavigation();
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
   return (
-    <Pressable>
+    <Pressable onPress={handleGoBack}>
       <Image source={require('../../assets/arrow-left.png')}></Image>
     </Pressable>
   );

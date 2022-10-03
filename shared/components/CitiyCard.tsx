@@ -68,19 +68,19 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   title: {
-    fontSize: FontSizes.xl,
+    fontSize: FontSizes.home.xl,
     color: 'white',
     fontFamily: Fonts.semiBold,
     lineHeight: 39,
   },
   date: {
-    fontSize: FontSizes.m,
+    fontSize: FontSizes.home.m,
     color: 'white',
     lineHeight: 18,
     fontFamily: Fonts.medium,
   },
   time: {
-    fontSize: FontSizes.s,
+    fontSize: FontSizes.home.s,
     color: 'white',
     lineHeight: 18,
     fontFamily: Fonts.light,

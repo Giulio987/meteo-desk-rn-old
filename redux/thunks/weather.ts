@@ -57,7 +57,7 @@ const getWeather =
           localeDate: date,
           localTime: hour,
           image: additionalData.image,
-          style: additionalData.style,
+          style: additionalData.style, //TODO
         },
         hourlyTemperatures: data.hourly.map((hour: any) => ({
           temperature: hour.temp,

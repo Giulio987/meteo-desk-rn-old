@@ -16,6 +16,6 @@ const Colors = {
     light: '#99A9B9',
   },
   defaultGrey: '#B8B8B8',
-  backgroundColor: '#B3B3B3',
+  backgroundColor: '#efefef03',
 };
 export default Colors;

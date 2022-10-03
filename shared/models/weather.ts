@@ -9,7 +9,10 @@ export interface CityWeather {
     localeDate: string;
     localTime: string;
     image: string;
-    style: CSSProperties;
+    style: {
+      first: string;
+      second: string;
+    };
   };
   hourlyTemperatures: { temperature: number; localTime: string }[];
   dailyWeather: {

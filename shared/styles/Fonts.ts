@@ -6,9 +6,12 @@ const Fonts = {
 };
 
 const FontSizes = {
-  s: 12,
-  m: 15,
-  xl: 26,
+  home: {
+    s: 12,
+    m: 15,
+    xl: 26,
+    xxl: 28,
+  },
 };
 
 export { Fonts, FontSizes };

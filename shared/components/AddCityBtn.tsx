@@ -3,6 +3,10 @@ import React from 'react';
 import { Fonts, FontSizes } from '../styles/Fonts';
 import Colors from '../styles/Colors';
 
+interface AddCityBtnProps {
+  hideText?: boolean;
+}
+
 const AddCityBtn = () => {
   return (
     <View style={styles.buttonContainer}>

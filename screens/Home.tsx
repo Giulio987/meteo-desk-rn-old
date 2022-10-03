@@ -14,6 +14,7 @@ import AddCityBtn from '../shared/components/AddCityBtn';
 import Colors from '../shared/styles/Colors';
 import { useSelector } from 'react-redux';
 import CitiyCard from '../shared/components/CitiyCard';
+import { FontSizes } from '../shared/styles/Fonts';
 
 type HomeProps = {};
 
@@ -38,7 +39,10 @@ const CITIES = [
 
 const Home = () => {
   //TODO background color
+  //TODO fix orario -> londra un ora indietro
+  //TODO mettera anche i meteo che mancano e prenderli dalla descrizione avanzata: es partly-cloudy-day e occ-light-rain
   //Redux
+  //TODO mettere tutti i path di imamagini in costanti
   const { cities, error, isLoading } = useSelector(
     (state: RootState) => state.weather
   );
@@ -64,7 +68,6 @@ const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        style={styles.list}
         contentContainerStyle={styles.listContentContainer}
         data={cities}
         ListHeaderComponent={
@@ -77,6 +80,7 @@ const Home = () => {
         keyExtractor={(item) => item.id.toString()}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          /* TODO capire se mettere lo stato isloading insieme a refreshing */
         }
       />
     </SafeAreaView>
@@ -88,6 +92,8 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.backgroundColor,
+    //TODO capire se mettere un padding o un margin sopra per staccarlo un po' dal bordo
   },
   list: {
     paddingTop: 50,
@@ -101,7 +107,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'Poppins-SemiBold',
     color: Colors.primary.main,
-    fontSize: 28,
+    fontSize: FontSizes.home.xxl,
     textAlign: 'center',
   },
 });

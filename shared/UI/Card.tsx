@@ -18,8 +18,6 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     marginHorizontal: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
     borderRadius: 20,
     shadowColor: '#0000002b',
     shadowOffset: {
@@ -29,7 +27,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 20,
     elevation: 4,
-    width: 148,
-    backgroundColor: 'white',
+    width: 175,
+    padding: 20,
   },
 });

@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import {
+  Dimensions,
   FlatList,
   RefreshControl,
   ScrollView,
@@ -16,9 +17,7 @@ import { useSelector } from 'react-redux';
 import CitiyCard from '../shared/components/CitiyCard';
 import { FontSizes } from '../shared/styles/Fonts';
 
-type HomeProps = {};
-
-const CITIES = [
+const INITIAL_CITIES = [
   {
     name: 'Turin',
     country: 'IT',
@@ -43,12 +42,10 @@ const Home = () => {
   //TODO mettera anche i meteo che mancano e prenderli dalla descrizione avanzata: es partly-cloudy-day e occ-light-rain
   //Redux
   //TODO mettere tutti i path di imamagini in costanti
-  const { cities, error, isLoading } = useSelector(
-    (state: RootState) => state.weather
-  );
+  const { cities } = useSelector((state: RootState) => state.weather);
   const dispatch = useAppDispatch();
   const dispatchMyAPi = useCallback(async () => {
-    for (const city of CITIES) {
+    for (const city of INITIAL_CITIES) {
       await dispatch(getWeather(city));
     }
   }, [dispatch]);
@@ -80,7 +77,6 @@ const Home = () => {
         keyExtractor={(item) => item.id.toString()}
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          /* TODO capire se mettere lo stato isloading insieme a refreshing */
         }
       />
     </SafeAreaView>
@@ -89,11 +85,13 @@ const Home = () => {
 
 export default Home;
 
+const { width, height } = Dimensions.get('window');
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.backgroundColor,
-    //TODO capire se mettere un padding o un margin sopra per staccarlo un po' dal bordo
+    marginTop: height > 800 ? 40 : 20,
   },
   list: {
     paddingTop: 50,

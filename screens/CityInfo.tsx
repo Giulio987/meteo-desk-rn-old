@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Dimensions,
   Image,
   Pressable,
   SafeAreaView,
@@ -73,6 +74,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     alignItems: 'center',
     marginBottom: 10,
+    marginTop: 20,
   },
   pressed: { opacity: 0.5 },
   cityName: {

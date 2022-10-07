@@ -14,11 +14,18 @@ export interface CityWeather {
       second: string;
     };
   };
-  hourlyTemperatures: { temperature: number; localTime: string }[];
-  dailyWeather: {
-    main: string;
-    temperature: number;
-    localeDate: string;
-    image: string;
-  }[];
+  hourlyTemperatures: HourlyTemperatures[];
+  dailyWeather: DailyWeather[];
+}
+
+export interface HourlyTemperatures {
+  temperature: number;
+  localTime: string;
+}
+
+export interface DailyWeather {
+  main: string;
+  temperature: number;
+  localeDate: string;
+  image: string;
 }

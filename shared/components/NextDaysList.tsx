@@ -8,14 +8,14 @@ const NextDaysList = ({ dailyWeather }: any) => {
     <FlatList
       contentContainerStyle={styles.list}
       data={dailyWeather}
-      renderItem={({ item }) => <DayCard />}
-      keyExtractor={(item) => item.date}
+      renderItem={({ item }) => <DayCard weather={item} />}
+      keyExtractor={(item) => item.localeDate + item.temperature}
       horizontal={true}
       showsHorizontalScrollIndicator={false}
     />
   );
 };
-
+//TODO mettere la lista a 20 px dal bordo in basso e adattare la shermata al device
 export default NextDaysList;
 
 const styles = StyleSheet.create({
